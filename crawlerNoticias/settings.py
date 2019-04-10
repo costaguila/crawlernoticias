@@ -8,7 +8,9 @@
 #     https://doc.scrapy.org/en/latest/topics/settings.html
 #     https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
-
+import os
+HOME = os.path.dirname(os.path.abspath(__file__))
+RESULT_FOLDER = HOME+"/results"
 BOT_NAME = 'crawlerNoticias'
 
 SPIDER_MODULES = ['crawlerNoticias.spiders']

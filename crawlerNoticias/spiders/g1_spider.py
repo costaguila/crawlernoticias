@@ -1,19 +1,19 @@
 import scrapy
 import ipdb
+from ..utils.write_result import write_result_to_txt
 
 class g1Spider(scrapy.Spider):
     name = 'g1'
     start_urls = ['https://g1.globo.com']
 
     def parse(self,response):
-        print(response.url)
         posts = response.css('div.feed-post-body')
+        all_news = []
         for item in posts:
-            img_url = item.css("img.bstn-fd-picture-image::attr('src')").extract_first()
-            title = item.css("a.feed-post-link::text").extract_first()
-            posted_at = item.css("span.feed-post-datetime::text").extract_first()
-            section = item.css("span.feed-post-metadata-section::text").extract_first()
-            chapeu = item.css('.feed-post-header-chapeu::text').extract_first()
-            result = "========\nimg: {0}\nTitulo: {1}\nPostado em: {2}\t seção:{3}\nChapeu: {4}\t\n"
-            result = result.format(img_url,title,posted_at,section,chapeu)
-            print(result)
+            result = {}
+            result['image'] = item.css("img.bstn-fd-picture-image::attr('src')").extract_first()
+            result['title'] = item.css("a.feed-post-link::text").extract_first()
+            result['published_at'] = item.css("span.feed-post-datetime::text").extract_first()
+            result['section'] = item.css("span.feed-post-metadata-section::text").extract_first()
+            all_news.append(result)
+        write_result_to_txt(self.settings.attributes['RESULT_FOLDER'].value,all_news,crawler_name=self.name)
