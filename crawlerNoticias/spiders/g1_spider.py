@@ -1,5 +1,4 @@
 import scrapy
-import ipdb
 from ..utils.write_result import write_result_to_txt
 
 class g1Spider(scrapy.Spider):
