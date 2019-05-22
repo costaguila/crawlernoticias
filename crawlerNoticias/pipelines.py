@@ -15,7 +15,7 @@ class MongoDBPipeline(object):
 
     def process_item(self, item, spider):
         print("#==============================")
-        print("# Foram encontradas {} noticias".format(len(item['noticias'])))
+        print("# Foram encontradas {} noticias em {}".format(len(item['noticias']), spider.name))
         print("#==============================")
         return item
 
