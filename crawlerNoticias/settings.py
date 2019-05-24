@@ -90,3 +90,9 @@ ITEM_PIPELINES = {
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+#MongoDB
+DATABASE = {
+    'conn': "mongodb://usuario:senha@localhost:27017/?authSource=BASEDEDADOSDEAUTHENTICACOA&authMechanism=SCRAM-SHA-1",
+    'name': 'nomedobanco'
+}
